@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+dist
+out
+.turbo
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*.swo
+
+# Vercel
+.vercel
+
+# PWA
+public/sw.js
+public/workbox-*.js

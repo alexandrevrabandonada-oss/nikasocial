@@ -1,0 +1,23 @@
+{
+  "name": "@nika/sdk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Helpers compartilhados do ecossistema Nika – clientes, utils, tipos",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./supabase": "./src/supabase/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "scripts": {
+    "lint": "echo 'lint sdk placeholder'",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1"
+  },
+  "devDependencies": {
+    "@nika/config": "workspace:*",
+    "typescript": "^5.7.3"
+  }
+}
