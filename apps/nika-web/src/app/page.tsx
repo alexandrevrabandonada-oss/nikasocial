@@ -48,7 +48,8 @@ export default function HomePage() {
             O Nika conecta comunidades a uma constelação de PWAs, ferramentas e ações do ecossistema. Veja os <Link href="/projetos" className="text-blue-700 hover:underline">projetos conectados</Link>.
           </p>
         </section>
-          </Link>
+
+        <section className="landing__actions">
           <Link href="/explorar" className="btn btn--ghost">
             Explorar sem conta
           </Link>
