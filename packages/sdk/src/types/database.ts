@@ -1,3 +1,44 @@
+      content_flags: {
+        Row: {
+          id: string
+          content_type: 'post' | 'comment' | 'knowledge_page' | 'project_link'
+          content_id: string
+          reason: 'spam' | 'vandalismo' | 'improprio' | 'duplicado' | 'quebrado'
+          note: string | null
+          created_by: string
+          created_at: string
+          status: 'open' | 'reviewed' | 'dismissed' | 'restricted'
+        }
+        Insert: Omit<Database['public']['Tables']['content_flags']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['content_flags']['Insert']>
+      }
+
+      moderation_events: {
+        Row: {
+          id: string
+          content_type: 'post' | 'comment' | 'knowledge_page' | 'project_link'
+          content_id: string
+          action_type: 'hide' | 'unhide' | 'lock_edit' | 'unlock_edit' | 'archive' | 'restore'
+          note: string | null
+          created_by: string
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['moderation_events']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['moderation_events']['Insert']>
+      }
+
+      user_roles: {
+        Row: {
+          id: string
+          user_id: string
+          role: 'admin' | 'moderator'
+          scope_type: 'global' | 'community'
+          community_id: string | null
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['user_roles']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['user_roles']['Insert']>
+      }
 /**
  * @nika/sdk – Tipos de domínio do banco de dados
  *
@@ -159,6 +200,7 @@ export interface Database {
           is_published: boolean
           created_at: string
           updated_at: string
+          is_locked: boolean
         }
         Insert: Omit<Database['public']['Tables']['knowledge_pages']['Row'], 'created_at' | 'updated_at' | 'is_published'>
         Update: Partial<Database['public']['Tables']['knowledge_pages']['Insert']>
@@ -179,17 +221,19 @@ export interface Database {
         Row: {
           id: string
           title: string
-          description: string | null
+          slug: string
           url: string
-          logo_url: string | null
-          link_type: 'pwa' | 'tool' | 'repo' | 'community' | 'other'
-          community_id: string | null // pode estar associado a uma comunidade
-          submitted_by: string        // FK profiles.id
-          is_approved: boolean        // curadoria comunitária
+          project_type: 'pwa' | 'site' | 'ferramenta' | 'mapa' | 'acervo_externo' | 'acao'
+          description: string | null
+          icon_name: string | null
+          community_id: string | null
+          knowledge_page_id: string | null
+          created_by: string
           created_at: string
           updated_at: string
+          is_active: boolean
         }
-        Insert: Omit<Database['public']['Tables']['project_links']['Row'], 'created_at' | 'updated_at' | 'is_approved'>
+        Insert: Omit<Database['public']['Tables']['project_links']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['project_links']['Insert']>
       }
     }

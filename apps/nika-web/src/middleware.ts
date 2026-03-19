@@ -6,14 +6,14 @@
  * 2. Proteger rotas autenticadas
  * 3. Redirecionar usuários não autenticados para /entrar
  *
- * ROTAS PROTEGIDAS: /perfil, /explorar, /comunidades, /acervo
- * ROTAS PÚBLICAS: /, /entrar, /cadastrar, /sobre
+ * ROTAS PROTEGIDAS: /perfil, /comunidades, /acervo
+ * ROTAS PÚBLICAS: /, /entrar, /cadastrar, /explorar
  */
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-const PROTECTED_ROUTES = ['/perfil', '/explorar', '/comunidades', '/acervo']
+const PROTECTED_ROUTES = ['/perfil', '/comunidades', '/acervo']
 const AUTH_ROUTES = ['/entrar', '/cadastrar']
 
 type CookieToSet = { name: string; value: string; options?: Record<string, unknown> }

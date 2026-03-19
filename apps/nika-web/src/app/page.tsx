@@ -39,6 +39,16 @@ export default function HomePage() {
           <Link href="/entrar" className="btn btn--primary">
             Entrar
           </Link>
+        </section>
+
+        {/* Ecossistema */}
+        <section className="landing__ecosystem mt-10">
+          <h2 className="text-lg font-bold mb-2">Nika é portal, não ilha</h2>
+          <p className="text-sm text-gray-600 mb-2">
+            O Nika conecta comunidades a uma constelação de PWAs, ferramentas e ações do ecossistema. Veja os <Link href="/projetos" className="text-blue-700 hover:underline">projetos conectados</Link>.
+          </p>
+        </section>
+          </Link>
           <Link href="/explorar" className="btn btn--ghost">
             Explorar sem conta
           </Link>
