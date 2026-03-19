@@ -1,6 +1,6 @@
 "use client"
 
-import { createProjectLinkAction } from '@/lib/projects/actions'
+import { createProjectLinkAction } from '@/app/projetos/createProjectLinkAction'
 
 const PROJECT_TYPES = [
   { value: 'pwa', label: 'PWA' },
