@@ -42,7 +42,7 @@ export function FlagButton({ content_type, content_id }: { content_type: 'knowle
       {open && (
         <form onSubmit={handleFlag} className="bg-white border p-2 rounded shadow mt-2 z-10 absolute">
           <label className="block text-xs font-medium mb-1">Motivo</label>
-          <select value={reason} onChange={e => setReason(e.target.value as any)} className="input mb-2">
+          <select value={reason} onChange={e => setReason(e.target.value as 'spam' | 'vandalismo' | 'improprio' | 'duplicado' | 'quebrado')} className="input mb-2">
             {REASONS.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
           </select>
           <textarea value={note} onChange={e => setNote(e.target.value)} className="input mb-2" placeholder="Nota (opcional)" />
