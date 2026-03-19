@@ -1,8 +1,9 @@
+'use server'
+
 import { createClient } from '@/lib/supabase/server'
-import { revalidatePath } from 'next/cache'
 
 export async function listProjectLinks() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data, error } = await supabase
     .from('project_links')
     .select('*, community:community_id (id, name, slug)')
@@ -13,7 +14,7 @@ export async function listProjectLinks() {
 }
 
 export async function getProjectLinkBySlug(slug: string) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data, error } = await supabase
     .from('project_links')
     .select('*, community:community_id (id, name, slug), knowledge_page:knowledge_page_id (id, title, slug)')

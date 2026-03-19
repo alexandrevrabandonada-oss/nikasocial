@@ -90,3 +90,14 @@ export async function logoutAction() {
   revalidatePath('/', 'layout')
   redirect('/')
 }
+
+// ─── Guard: exige autenticação ────────────────────────────────────────────────
+
+export async function requireAuth() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    redirect('/entrar?error=Você precisa estar logado')
+  }
+  return user
+}

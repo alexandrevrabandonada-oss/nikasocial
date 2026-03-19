@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 interface AcervoFormProps {
-  page?: any // undefined para criação, objeto para edição
+  page?: { id: string; slug: string; title?: string; summary?: string; body_current?: string; community_id?: string; last_edited_by?: string } // undefined para criação, objeto para edição
   communities: { id: string; name: string }[]
   onSuccess: (slug: string) => void
 }

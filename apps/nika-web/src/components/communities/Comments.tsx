@@ -17,7 +17,7 @@ interface Comment {
 
 interface CommentsProps {
   postId: string
-  user: any
+  user: { id: string } | null
 }
 
 export default function Comments({ postId, user }: CommentsProps) {
@@ -44,7 +44,7 @@ export default function Comments({ postId, user }: CommentsProps) {
       .eq('is_removed', false)
       .order('created_at', { ascending: true })
     if (error) setError('Erro ao carregar comentários')
-    setComments(data as any)
+    setComments(data as Comment[])
     setLoading(false)
   }
 

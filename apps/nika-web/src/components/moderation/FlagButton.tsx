@@ -12,7 +12,7 @@ const REASONS = [
 
 export function FlagButton({ content_type, content_id }: { content_type: 'knowledge_page' | 'project_link', content_id: string }) {
   const [open, setOpen] = useState(false)
-  const [reason, setReason] = useState('spam')
+  const [reason, setReason] = useState<'spam' | 'vandalismo' | 'improprio' | 'duplicado' | 'quebrado'>('spam')
   const [note, setNote] = useState('')
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
@@ -25,8 +25,8 @@ export function FlagButton({ content_type, content_id }: { content_type: 'knowle
     try {
       await flagContent({ content_type, content_id, reason, note })
       setDone(true)
-    } catch (err: any) {
-      setError(err.message || 'Erro ao sinalizar')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Erro ao sinalizar')
     } finally {
       setLoading(false)
     }
@@ -42,7 +42,7 @@ export function FlagButton({ content_type, content_id }: { content_type: 'knowle
       {open && (
         <form onSubmit={handleFlag} className="bg-white border p-2 rounded shadow mt-2 z-10 absolute">
           <label className="block text-xs font-medium mb-1">Motivo</label>
-          <select value={reason} onChange={e => setReason(e.target.value)} className="input mb-2">
+          <select value={reason} onChange={e => setReason(e.target.value as any)} className="input mb-2">
             {REASONS.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
           </select>
           <textarea value={note} onChange={e => setNote(e.target.value)} className="input mb-2" placeholder="Nota (opcional)" />

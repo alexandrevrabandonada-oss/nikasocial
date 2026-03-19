@@ -13,7 +13,7 @@ const ACTIONS = [
 
 interface PostActionsProps {
   postId: string
-  user: any
+  user: { id: string } | null
 }
 
 export default function PostActions({ postId, user }: PostActionsProps) {
