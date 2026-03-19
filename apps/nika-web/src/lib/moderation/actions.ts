@@ -1,3 +1,5 @@
+'use server'
+
 import { createClient } from '@/lib/supabase/server'
 
 export async function flagContent({ content_type, content_id, reason, note }: {
@@ -6,7 +8,7 @@ export async function flagContent({ content_type, content_id, reason, note }: {
   reason: 'spam' | 'vandalismo' | 'improprio' | 'duplicado' | 'quebrado',
   note?: string
 }) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { error } = await supabase.from('content_flags').insert({
     content_type, content_id, reason, note
   })
@@ -14,7 +16,7 @@ export async function flagContent({ content_type, content_id, reason, note }: {
 }
 
 export async function listOpenFlags() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data, error } = await supabase
     .from('content_flags')
     .select('*')
@@ -30,7 +32,7 @@ export async function moderateContent({ content_type, content_id, action_type, n
   action_type: 'hide' | 'unhide' | 'lock_edit' | 'unlock_edit' | 'archive' | 'restore',
   note?: string
 }) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { error } = await supabase.from('moderation_events').insert({
     content_type, content_id, action_type, note
   })
